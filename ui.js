@@ -10,12 +10,15 @@ class UI {
 		//7.2 Son kullanıcıların isimlerinin listelendiği ul yi  ve İnput alanının seçmeliyiz.
 		this.lastUsers = document.getElementById('last-users');
 		this.inputField = document.getElementById('githubname');
+
+		//7.5
+		this.cardBody = document.querySelector('.card-body');
 	}
 	//7.3
 	clearInput() {
 		this.inputField.value = '';
 	}
-	//7.4 
+	//7.4
 	showUserInfo(user) {
 		this.profileDiv.innerHTML = `
         
@@ -59,7 +62,21 @@ class UI {
                    
                 
           </div>
-    </div>`;
-    //Not yukarıdaki bilgileri biz json dosyalarına göre çekiyoruz örneğin https://api.github.com/users/cihan-argan dönen değerlere göre yazdık.
+    </div>
+    `;
+		//Not yukarıdaki bilgileri biz json dosyalarına göre çekiyoruz örneğin https://api.github.com/users/cihan-argan dönen değerlere göre yazdık.
+	}
+
+	//7.5 hata mesajlarını yazdırmak
+	showError(message) {
+		const div = document.createElement('div');
+		div.className = 'alert alert-danger';
+		div.textContent = message;
+
+		this.cardBody.appendChild(div);
+
+		setTimeout(() => {
+			div.remove();
+		}, 2000);
 	}
 }

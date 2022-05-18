@@ -37,14 +37,13 @@ function getData(e) {
 			.then((response) => {
 				//Farklı bir kullanıcı adı yazınca bize User Ve Repo Dönüyor User içinde ise NotFound mesajı geliyor bu dönmeyi engellemek için alttaki if bloğunu yazdık Not Found dönerse oraya bir hata mesajı yazdıracağız dönmez ise responseu yine consola yazdırdık.
 				if (response.user.message === 'Not Found') {
-					//Hata mesajımızı yazdıracağız.
-					console.log('HATA');
+					ui.showError('Bu kullanıcı adı mevcut değil.');
 				} else {
 					console.log(response.user);
 					ui.showUserInfo(response.user);
 				}
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => ui.showError(err));
 	}
 
 	ui.clearInput();
