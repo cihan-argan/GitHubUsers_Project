@@ -6,6 +6,9 @@ const lastUsers = document.querySelector('#last-users');
 //6.4
 const github = new Github();
 
+//7.0
+const ui = new UI();
+
 //2.adım eventListeners
 eventListeners();
 
@@ -23,6 +26,7 @@ function getData(e) {
 	//Not Get Data yazmadan önce github.js oluşturup async ile değerimizi dönmemiz gerekiyor.
 
 	//ilk başta inputtaki kullanıcı adını alıp github.js deki fonksiyonu çalıştırıcam
+	//6.5
 	let username = nameInput.value.trim();
 
 	if (username === '') {
@@ -31,15 +35,19 @@ function getData(e) {
 		github
 			.getGithubData(username)
 			.then((response) => {
+				//Farklı bir kullanıcı adı yazınca bize User Ve Repo Dönüyor User içinde ise NotFound mesajı geliyor bu dönmeyi engellemek için alttaki if bloğunu yazdık Not Found dönerse oraya bir hata mesajı yazdıracağız dönmez ise responseu yine consola yazdırdık.
 				if (response.user.message === 'Not Found') {
 					//Hata mesajımızı yazdıracağız.
 					console.log('HATA');
 				} else {
-					console.log(response);
+					console.log(response.user);
+					ui.showUserInfo(response.user);
 				}
 			})
 			.catch((err) => console.log(err));
 	}
+
+	ui.clearInput();
 	e.preventDefault();
 }
 //7-clearAllSearch Fonksiyonunu yazıyoruz
