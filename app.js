@@ -41,6 +41,7 @@ function getData(e) {
 				} else {
 					console.log(response.user);
 					ui.showUserInfo(response.user);
+					ui.showRepoInfo(response.repo);
 				}
 			})
 			.catch((err) => ui.showError(err));

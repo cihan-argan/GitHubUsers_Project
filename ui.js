@@ -18,7 +18,7 @@ class UI {
 	clearInput() {
 		this.inputField.value = '';
 	}
-	//7.4
+	//7.4 Kullanıcı bilgilerini UI üzerinde göstermek
 	showUserInfo(user) {
 		this.profileDiv.innerHTML = `
         
@@ -78,5 +78,35 @@ class UI {
 		setTimeout(() => {
 			div.remove();
 		}, 2000);
+	}
+
+	//7.6 Repo bilgilerini UI üzerinde göstermek
+	showRepoInfo(repos) {
+		//daha önce sorgulama varsa yeni sorgulamada repoların tutulduğu arayüzü temizlemeliyiz.
+		this.repoDiv.innerHTML = '';
+
+		//Gelen repo dizisini forEach ile gezerek her bir repoyu arayüzde göstermeye çalıştık.
+		repos.forEach((repo) => {
+			this.repoDiv.innerHTML += `
+            <div class="mb-2 card-body">
+                    <div class="row">
+                        <div class="col-md-2"> 
+                        <a href="${repo.html_url}" target = "_blank" id = "repoName">${repo.name}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-secondary">
+                                Starlar  <span class="badge badge-light" id="repoStar">${repo.stargazers_count}</span>
+                            </button>
+
+                            <button class="btn btn-info">
+                                Forklar  <span class="badge badge-light" id ="repoFork">${repo.fork}</span>
+                            </button>
+                    
+                        </div>
+                </div>
+
+             </div>
+            `;
+		});
 	}
 }
