@@ -109,4 +109,16 @@ class UI {
             `;
 		});
 	}
+
+	//8.4
+	addSearchedUserToUI(username) {
+		let users = Storage.getSearchedUsersFromStorage();
+		if (users.indexOf(username) === -1) {
+			// <!-- <li class="list-group-item">eklenecek kullanıcı adı </li> -->
+			const li = document.createElement('li');
+			li.className = 'list-group-item';
+			li.textContent = username;
+			this.lastUsers.appendChild(li);
+		}
+	}
 }

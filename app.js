@@ -39,7 +39,10 @@ function getData(e) {
 				if (response.user.message === 'Not Found') {
 					ui.showError('Bu kullanıcı adı mevcut değil.');
 				} else {
-					console.log(response.user);
+					//8.4
+					ui.addSearchedUserToUI(username);
+					//8.2 not uı.addSearchedUserToUI fonksiyonu üstte olmalı aksi takdirde hata alırız
+					Storage.addSearchedUserToStorage(username);
 					ui.showUserInfo(response.user);
 					ui.showRepoInfo(response.repo);
 				}
@@ -50,11 +53,19 @@ function getData(e) {
 	ui.clearInput();
 	e.preventDefault();
 }
-//7-clearAllSearch Fonksiyonunu yazıyoruz
+//9-clearAllSearch Fonksiyonunu yazıyoruz
 function clearAllSearched() {
 	//Tüm arananları temizleyen Fonksiyon
 }
-//8-getAllSearched fonksiyonu
+//8.5-getAllSearched fonksiyonu
 function getAllSearched() {
 	//arananları storegdan alıp UI a yazan fonksiyon
+
+	let users = Storage.getSearchedUsersFromStorage();
+	let result = '';
+	users.forEach((user) => {
+		// <!-- <li class="list-group-item">eklenecek kullanıcı adı </li> -->
+		result += `<li class="list-group-item">${user} </li>`;
+	});
+	lastUsers.innerHTML = result;
 }
