@@ -56,6 +56,10 @@ function getData(e) {
 //9-clearAllSearch Fonksiyonunu yazıyoruz
 function clearAllSearched() {
 	//Tüm arananları temizleyen Fonksiyon
+	if (confirm('Emin Misiniz ? ')) {
+		Storage.clearAllSearchedUsersFromStorage(); //storage üzerinden temizleme yapan fonksiyon.
+		ui.clearAllSearchedUsersFromUI();
+	}
 }
 //8.5-getAllSearched fonksiyonu
 function getAllSearched() {
